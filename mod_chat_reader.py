@@ -24,16 +24,13 @@ def format_chat():
 
 @app.route('/textToAi', methods=['POST'])
 def post_text_to_ai(chat_formated):
-    # Ajustando o envio de dados JSON corretamente
     url_api = "http://localhost:5001/api/v1/generate"
     post_chat = {'prompt': chat_formated}
 
     resposta = requests.post(url_api, json=post_chat)
 
-    #return jsonify({'status': resposta.status_code, 'resposta': resposta.json()})
 
 def main():
-    # Usando threading para rodar format_chat simultaneamente
     thread = threading.Thread(target=format_chat)
     thread.start()
 
